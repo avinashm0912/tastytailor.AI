@@ -6,41 +6,250 @@
     <title>TasteTailor AI - AI Recipes for Indian Home Cooks</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #ff8c42, #e63946); margin-top: 56px; }
-        .navbar { position: fixed; top: 0; width: 100%; z-index: 1000; background: #ff8c42; }
-        .navbar-brand, .nav-link { color: white !important; }
-        .navbar-brand .ai-icon { color: #ffffff; }
-        .navbar-toggler { border-color: white; }
-        .carousel { height: 80vh; }
-        .carousel-inner { height: 100%; }
-        .carousel-item { height: 100%; }
-        .carousel-item img { object-fit: cover; height: 100%; width: 100%; }
-        .carousel-caption { background: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 5px; }
-        .hero-overlay { height: 100%; display: flex; align-items: center; justify-content: center; }
-        .feature-card { transition: transform 0.3s; background: #ffffff; }
-        .feature-card:hover { transform: scale(1.05); }
-        .ai-icon { color: #e63946; }
-        .cta { background: linear-gradient(135deg, #ff6f61, #ff8c42); color: white; }
-        .btn-primary { background-color: #e63946; border-color: #e63946; }
-        .btn-primary:hover { background-color: #d32f2f; border-color: #d32f2f; }
-        .btn-light { background-color: #ffffff; color: #e63946; border-color: #ffffff; }
-        .btn-light:hover { background-color: #ff8c42; color: #ffffff; }
-        .btn-dark { background-color: #d32f2f; border-color: #d32f2f; }
-        .btn-dark:hover { background-color: #b71c1c; border-color: #b71c1c; }
-        @media (max-width: 768px) {
-            .carousel { height: 60vh; }
-            .feature-card { margin-bottom: 20px; }
-            .row > * { flex: 100%; max-width: 100%; }
-            .col-md-6 { flex: 0 0 100%; max-width: 100%; }
-            .col-md-2 { flex: 0 0 100%; max-width: 100%; margin-top: 10px; }
-            .nav-link.btn { margin-top: 10px; }
+        :root {
+            --primary-color: #e63946;
+            --secondary-color: #ff8c42;
+            --accent-color: #ff6f61;
         }
+        
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: linear-gradient(135deg, #ff8c42, #e63946); 
+            margin-top: 56px; 
+            overflow-x: hidden;
+        }
+        
+        .navbar { 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000; 
+            background: var(--secondary-color); 
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand, .nav-link { 
+            color: white !important; 
+            font-weight: 600;
+        }
+        
+        .navbar-brand .ai-icon { 
+            color: #ffffff; 
+        }
+        
+        .navbar-toggler { 
+            border-color: white; 
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .carousel {
+            height: 80vh;
+            min-height: 500px;
+        }
+        
+        .carousel-inner {
+            height: 100%;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .carousel-item {
+            height: 100%;
+            transition: transform 0.6s ease-in-out;
+        }
+        
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        .carousel-caption {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            bottom: 20%;
+            left: 10%;
+            right: 10%;
+            text-align: center;
+        }
+        
+        .carousel-caption h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .carousel-caption p {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            margin-bottom: 1.5rem;
+        }
+        
+        .carousel-control-prev, .carousel-control-next {
+            width: 5%;
+        }
+        
+        /* Features Section */
+        .feature-card { 
+            transition: transform 0.3s; 
+            background: #ffffff; 
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .feature-card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .ai-icon { 
+            color: var(--primary-color); 
+        }
+        
+        /* CTA Section */
+        .cta { 
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color)); 
+            color: white; 
+        }
+        
+        .btn-primary { 
+            background-color: var(--primary-color); 
+            border-color: var(--primary-color); 
+            font-weight: 500;
+        }
+        
+        .btn-primary:hover { 
+            background-color: #d32f2f; 
+            border-color: #d32f2f; 
+        }
+        
+        .btn-light { 
+            background-color: #ffffff; 
+            color: var(--primary-color); 
+            border-color: #ffffff; 
+            font-weight: 500;
+        }
+        
+        .btn-light:hover { 
+            background-color: var(--secondary-color); 
+            color: #ffffff; 
+        }
+        
+        .btn-dark { 
+            background-color: #d32f2f; 
+            border-color: #d32f2f; 
+        }
+        
+        .btn-dark:hover { 
+            background-color: #b71c1c; 
+            border-color: #b71c1c; 
+        }
+        
+        /* Form Styling */
+        #mvp {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            margin: 30px auto;
+            padding: 30px;
+            max-width: 90%;
+        }
+        
+        #recipeForm {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .carousel {
+                height: 70vh;
+                min-height: 400px;
+            }
+            
+            .carousel-caption {
+                bottom: 15%;
+                left: 5%;
+                right: 5%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .carousel {
+                height: 60vh;
+                min-height: 350px;
+            }
+            
+            .carousel-caption {
+                bottom: 10%;
+                padding: 15px;
+            }
+            
+            .feature-card { 
+                margin-bottom: 20px; 
+            }
+            
+            .navbar-nav .btn {
+                margin-top: 10px;
+                width: 100%;
+                text-align: center;
+            }
+        }
+        
         @media (max-width: 576px) {
-            .display-3 { font-size: 2rem; }
-            .lead { font-size: 1rem; }
-            .btn-lg { font-size: 1rem; padding: 8px 16px; }
-            .carousel-caption { font-size: 0.9rem; }
+            .carousel {
+                height: 50vh;
+                min-height: 300px;
+            }
+            
+            .carousel-caption {
+                bottom: 5%;
+                padding: 10px;
+            }
+            
+            .carousel-caption h1 {
+                font-size: 1.8rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .carousel-caption p {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .btn-lg {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+            
+            #mvp {
+                padding: 20px 15px;
+                margin: 20px auto;
+            }
+        }
+        
+        /* Utility Classes */
+        .section-padding {
+            padding: 80px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 60px 0;
+            }
         }
     </style>
 </head>
@@ -56,7 +265,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link btn btn-primary text-white" href="#cta">Get Started</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-primary text-white ms-lg-2" href="#cta">Get Started</a></li>
                 </ul>
             </div>
         </div>
@@ -67,29 +276,25 @@
         <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="Gemini_Generated_Image_dylwfpdylwfpdylw.png.png" alt="Indian Spices">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h1 class="display-3 fw-bold">AI-Powered Recipes</h1>
+                    <img src="Gemini_Generated_Image_dylwfpdylwfpdylw.png.png" alt="Indian Spices" class="d-block w-100">
+                    <div class="carousel-caption">
+                        <h1 class="fw-bold">AI-Powered Recipes</h1>
                         <p class="lead">Discover the flavors of Indian spices.</p>
                         <a href="#cta" class="btn btn-lg btn-light">Try Now for Free</a>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="chettinad.png" alt="Indian Curry">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h1 class="display-3 fw-bold">Tailored for Indian Homes</h1>
+                    <img src="chettinad.png" alt="Indian Curry" class="d-block w-100">
+                    <div class="carousel-caption">
+                        <h1 class="fw-bold">Tailored for Indian Homes</h1>
                         <p class="lead">Enjoy authentic curry recipes.</p>
                         <a href="#cta" class="btn btn-lg btn-light">Try Now for Free</a>
                     </div>
                 </div>
                 <div class="carousel-item">
-                <!--    <video autoplay loop muted playsinline poster="preview-image.jpg" width="100%" height="100%">
-                        <source src="grok-video-ea98ef91-8a4e-4f94-9101-6454146f8c43.mp4" type="video/mp4">
-                    </video>
-                -->
-                    <img src="ChatGPT sweets.png" alt="Indian Sweets">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h1 class="display-3 fw-bold">Blend Tradition with Tech</h1>
+                    <img src="ChatGPT sweets.png" alt="Indian Sweets" class="d-block w-100">
+                    <div class="carousel-caption">
+                        <h1 class="fw-bold">Blend Tradition with Tech</h1>
                         <p class="lead">Savor traditional Indian sweets.</p>
                         <a href="#cta" class="btn btn-lg btn-light">Try Now for Free</a>
                     </div>
@@ -105,47 +310,58 @@
             </button>
         </div>
     </section>
+
+    <!-- MVP Section -->
     <section id="mvp" class="py-5">
         <div class="container">
-            <h2>Generate Your Recipe</h2>
+            <h2 class="text-center mb-4">Generate Your Recipe</h2>
             <form id="recipeForm">
-                <input type="text" id="ingredientsText" placeholder="Enter ingredients (e.g., tomato, onion)" class="form-control mb-3">
-                <input type="file" id="ingredientsImage" accept="image/*" class="form-control mb-3">
-                <button type="submit" class="btn btn-primary">Get Recipe</button>
+                <div class="mb-3">
+                    <input type="text" id="ingredientsText" placeholder="Enter ingredients (e.g., tomato, onion)" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="ingredientsImage" class="form-label">Or upload an image of your ingredients</label>
+                    <input type="file" id="ingredientsImage" accept="image/*" class="form-control">
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg">Get Recipe</button>
+                </div>
             </form>
-            <div id="results" class="mt-4"></div>
+            <div id="results" class="mt-4 p-3 bg-light rounded" style="display: none;">
+                <!-- Recipe results will appear here -->
+            </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-5">
+    <section id="features" class="section-padding">
         <div class="container text-center">
-            <h2 class="mb-4">Why TasteTailor AI?</h2>
-            <div class="row">
-                <div class="col-md-4 mb-4">
+            <h2 class="mb-5">Why TasteTailor AI?</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
                     <div class="card feature-card shadow">
-                        <div class="card-body">
+                        <div class="card-body p-4">
                             <i class="fas fa-camera fa-3x ai-icon mb-3"></i>
                             <h5 class="card-title">Ingredient Scanner</h5>
-                            <p>Upload a photo of your fridge – AI detects ingredients and suggests recipes.</p>
+                            <p class="card-text">Upload a photo of your fridge – AI detects ingredients and suggests recipes.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4">
                     <div class="card feature-card shadow">
-                        <div class="card-body">
+                        <div class="card-body p-4">
                             <i class="fas fa-utensils fa-3x ai-icon mb-3"></i>
                             <h5 class="card-title">Smart Recipe Generator</h5>
-                            <p>Personalized Indian recipes with regional twists and quick prep times.</p>
+                            <p class="card-text">Personalized Indian recipes with regional twists and quick prep times.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4">
                     <div class="card feature-card shadow">
-                        <div class="card-body">
+                        <div class="card-body p-4">
                             <i class="fas fa-heartbeat fa-3x ai-icon mb-3"></i>
                             <h5 class="card-title">Health Suggestions</h5>
-                            <p>Nutrition breakdowns and tips for low-cal, diabetic-friendly meals.</p>
+                            <p class="card-text">Nutrition breakdowns and tips for low-cal, diabetic-friendly meals.</p>
                         </div>
                     </div>
                 </div>
@@ -154,7 +370,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-5 bg-light">
+    <section id="about" class="section-padding bg-light">
         <div class="container">
             <h2 class="text-center mb-4">About Us</h2>
             <p class="text-center lead">TasteTailor AI empowers Indian home cooks with cutting-edge AI. From everyday dals to festive biryanis, get recipes that fit your ingredients, budget, and health goals. Built by a cloud engineer passionate about food and tech.</p>
@@ -162,15 +378,15 @@
     </section>
 
     <!-- CTA Section -->
-    <section id="cta" class="py-5 cta text-center">
+    <section id="cta" class="section-padding cta text-center">
         <div class="container">
             <h2 class="mb-4">Ready to Cook Smarter?</h2>
             <form class="row g-3 justify-content-center">
                 <div class="col-md-6">
-                    <input type="email" class="form-control" placeholder="Enter your email">
+                    <input type="email" class="form-control form-control-lg" placeholder="Enter your email">
                 </div>
                 <div class="col-md-2">
-                    <button type="submit" class="btn btn-dark w-100">Sign Up</button>
+                    <button type="submit" class="btn btn-dark w-100 btn-lg">Sign Up</button>
                 </div>
             </form>
             <p class="mt-3">Join our beta – Free forever for basic use!</p>
@@ -178,33 +394,63 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-3 text-center">
-        <p>&copy; 2025 TasteTailor AI. All rights reserved.</p>
+    <footer class="bg-dark text-white py-4 text-center">
+        <div class="container">
+            <p>&copy; 2025 TasteTailor AI. All rights reserved.</p>
+        </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    document.getElementById('recipeForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const text = document.getElementById('ingredientsText').value;
-        const file = document.getElementById('ingredientsImage').files[0];
-        let formData = new FormData();
-        if (file) formData.append('image', file);
-        if (text) formData.append('text', text);
-
-        // Get auth token from Cognito (added in Step 4)
-        const token = await getCurrentUserToken(); // Placeholder; implement after Cognito
-
-        const response = await fetch('/api/generateRecipe', { // Your Amplify API endpoint
-            method: 'POST',
-            headers: { Authorization: `Bearer ${token}` },
-            body: formData
+    <script>
+        // Basic form handling for demonstration
+        document.getElementById('recipeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const text = document.getElementById('ingredientsText').value;
+            const file = document.getElementById('ingredientsImage').files[0];
+            
+            // Simple validation
+            if (!text && !file) {
+                alert('Please enter ingredients or upload an image');
+                return;
+            }
+            
+            // Show loading state
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.style.display = 'block';
+            resultsDiv.innerHTML = '<div class="text-center"><i class="fas fa-spinner fa-spin me-2"></i>Generating your recipe...</div>';
+            
+            // Simulate API call with timeout
+            setTimeout(() => {
+                // Mock response for demonstration
+                resultsDiv.innerHTML = `
+                    <h3>Paneer Butter Masala</h3>
+                    <p><strong>Ingredients:</strong> ${text || 'Based on your image'}</p>
+                    <p><strong>Instructions:</strong> 
+                    1. Heat oil in a pan and sauté onions until golden.<br>
+                    2. Add tomatoes and cook until soft.<br>
+                    3. Add spices and cook for 2 minutes.<br>
+                    4. Add paneer and simmer for 5 minutes.<br>
+                    5. Garnish with cream and coriander leaves.
+                    </p>
+                    <p><strong>Nutrition:</strong> 350 calories per serving</p>
+                    <p><strong>Health Tip:</strong> Use low-fat cream for a healthier version</p>
+                `;
+            }, 2000);
         });
-        const data = await response.json();
-        document.getElementById('results').innerHTML = `
-            <h3>Recipe: ${data.recipe}</h3>
-            <p>Nutrition: ${data.nutrition.calories} calories</p>
-            <p>Health Tip: ${data.healthTip}</p>
-        `;
-    });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
